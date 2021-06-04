@@ -64,3 +64,8 @@ void Task::removeTag( const string& tag ) {
 bool Task::hasTag( const string& tag ) const {
     return ( tags.count(tag) > 0 );
 }
+
+bool Task::operator< ( const Task& other ) const {
+    return ( this->getPriority() > other.getPriority() );
+}
+

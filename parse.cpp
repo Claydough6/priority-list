@@ -81,7 +81,7 @@ void addTask( stringstream& ss, vector<Task>& tasks ) {
 }
 
 
-void showTasks( stringstream& ss, const vector<Task>& tasks ) {
+void showBasic( const vector<Task>& tasks ) {
     for ( const Task& t : tasks ) {
         cout << t.getName() << " - " << t.getPriority() << " : ";
         for ( const string& s : t.getTags() ) {
@@ -89,6 +89,47 @@ void showTasks( stringstream& ss, const vector<Task>& tasks ) {
                 cout << s << " ";
         }
         cout << endl;
+    }
+}
+
+void showTasks( stringstream& ss, const vector<Task>& tasks ) {
+    // get the first tag
+    string tag = "";
+    ss >> tag;
+    
+    // check if any tags requested
+    if ( tag.size() == 0 ) {
+        showBasic(tasks);
+        return;
+    }
+    
+    // if we have tags, make a priority queue
+    priority_queue<Task> tasklist;
+    unordered_set<string> names;        // keeps the tasks we've added
+
+    do {
+        // search for items with this tag
+        for ( const Task& t : tasks ) {
+            if ( t.hasTag(tag) && (names.count(t.getName()) == 0) ) {
+                tasklist.push(t);
+                names.insert( t.getName() );
+            }
+        }
+    } while ( ss >> tag );
+
+    // print out the priority queue
+    cout << "Tasks: " << endl;
+    while ( !(tasklist.empty()) ) {
+        Task t = tasklist.top();        // get the element
+        
+        cout << "  " << t.getName() << " - " << t.getPriority() << " : ";
+        for ( const string& tag : t.getTags() ) {
+            if ( tag != "all" )
+                cout << tag << ", ";
+        }
+        cout << endl;
+
+        tasklist.pop();     // remove the element
     }
 }
 
