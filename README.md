@@ -12,7 +12,8 @@ Also implements funcitons like adding, printing, removing, etc.
 
 ### task.h, task.cpp:
 Implements the Task class to hold representation of a task for use.
-Task:
+
+Task has...
   - name
   - description (not yet in use)
   - priority
