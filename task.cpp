@@ -69,3 +69,6 @@ bool Task::operator< ( const Task& other ) const {
     return ( this->getPriority() > other.getPriority() );
 }
 
+bool Task::active() const {
+    return !( this->hasTag("finished") );
+}

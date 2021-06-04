@@ -39,7 +39,7 @@ public:
     // useful
     bool hasTag( const string& tag ) const;
     bool operator< ( const Task& other ) const;
-
+    bool active() const;
 };
 
 #endif
