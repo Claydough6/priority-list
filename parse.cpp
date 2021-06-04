@@ -42,6 +42,12 @@ int parseCommand( const string& cmd, vector<Task>& tasks ) {
     else if ( arg == "remove" || arg == "r" ) {
         removeTask( ss, tasks );
     }
+    else if ( arg == "tag" || arg == "t" ) {
+        addTags( ss, tasks );
+    }
+    else if ( arg == "untag" || arg == "u" ) {
+        removeTags( ss, tasks );
+    }
 
     return 0;
 }
@@ -145,4 +151,43 @@ void removeTask( stringstream& ss, vector<Task>& tasks ) {
             break;
         }
     }
+}
+
+
+void addTags( stringstream& ss, vector<Task>& tasks ) {
+    string name, tag;
+    ss >> name;
+
+    vector<Task>::iterator modtask;
+    for ( modtask = tasks.begin(); modtask != tasks.end(); ++modtask ) {
+        if ( modtask->getName() == name ) {
+            break;
+        }
+    }
+    if ( modtask == tasks.end() ) return;
+
+    while ( ss >> tag ) {
+        modtask->addTag( tag );
+    }
+
+    return;
+}
+
+void removeTags( stringstream& ss, vector<Task>& tasks ) {
+    string name, tag;
+    ss >> name;
+    
+    vector<Task>::iterator modtask;
+    for ( modtask = tasks.begin(); modtask != tasks.end(); ++modtask ) {
+        if ( modtask->getName() == name ) {
+            break;
+        }
+    }
+    if ( modtask == tasks.end() ) return;
+
+    while ( ss >> tag ) {
+        modtask->removeTag( tag );
+    }
+
+    return;
 }

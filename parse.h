@@ -30,4 +30,8 @@ void showBasic( const vector<Task>& tasks );
 
 void showTasks( stringstream& ss, const vector<Task>& tasks );
 
+void addTags( stringstream& ss, vector<Task>& tasks );
+
+void removeTags( stringstream& ss, vector<Task>& tasks );
+
 #endif
