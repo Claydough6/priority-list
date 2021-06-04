@@ -123,7 +123,7 @@ void showTasks( stringstream& ss, const vector<Task>& tasks ) {
         
         cout << "  " << t.getName() << " - " << t.getPriority() << " : ";
         for ( const string& tag : t.getTags() ) {
-            if ( !noPrint(tag) )
+            if ( !hiddenTag(tag) )
                 cout << tag << ", ";
         }
         cout << endl;
@@ -186,7 +186,7 @@ void removeTags( stringstream& ss, vector<Task>& tasks ) {
 }
 
 
-bool noPrint( const string& tag ) {
+bool hiddenTag( const string& tag ) {
     if ( tag == "all" ) {
         return true;
     } else if ( tag == "finished" ) {

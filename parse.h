@@ -34,6 +34,6 @@ void addTags( stringstream& ss, vector<Task>& tasks );
 
 void removeTags( stringstream& ss, vector<Task>& tasks );
 
-bool noPrint( const string& tag );
+bool hiddenTag( const string& tag );
 
 #endif
