@@ -15,6 +15,7 @@ using std::endl;
 using std::string;
 using std::vector;
 using std::stringstream;
+using std::cout;
 
 int save( const string& file, const vector<Task>& tasks );
 

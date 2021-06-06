@@ -47,7 +47,8 @@ int main( int argc, char** argv ) {
             break;
         if ( rval != 0 )
             return EXIT_FAILURE;
-
+        
+        cout << endl;
         cout << "> ";
     }
 

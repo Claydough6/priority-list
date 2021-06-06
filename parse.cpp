@@ -52,10 +52,12 @@ int parseCommand( const string& cmd, vector<Task>& tasks, string& file ) {
         ss >> file;
     }
     else if ( arg == "save" || arg == "s" ) {
-        save( file, tasks );
+        int rval = save( file, tasks );
+        return rval;
     }
     else if ( arg == "load" || arg == "l" ) {
-        load( file, tasks );
+        int rval = load( file, tasks );
+        return rval;
     }
 
     return 0;
@@ -91,8 +93,12 @@ void addTask( stringstream& ss, vector<Task>& tasks ) {
         if ( task.getName() == t.getName() )
             in = true;
     }
-    if ( !in )
+    if ( !in ) {
         tasks.push_back(t);
+        cout << "Added task " << t.getName() << " with priority " << t.getPriority() << endl;
+    } else {
+        cout << "Task " << t.getName() << " already exists" << endl;
+    }
 }
 
 
@@ -150,8 +156,12 @@ void removeTask( stringstream& ss, vector<Task>& tasks ) {
     for ( iter = tasks.begin(); iter != tasks.end(); ++iter ) {
         if ( iter->getName() == name ) {
             tasks.erase(iter);
+            cout << "Removed task: " << iter->getName() << endl;
             break;
         }
+    }
+    if ( iter == tasks.end() ) {
+        cout << "Task " << name << " doesn't exist" << endl;
     }
 }
 
@@ -170,6 +180,7 @@ void addTags( stringstream& ss, vector<Task>& tasks ) {
 
     while ( ss >> tag ) {
         modtask->addTag( tag );
+        cout << "Tagged task " << modtask->getName() << " with " << tag << endl;
     }
 
     return;
@@ -189,6 +200,7 @@ void removeTags( stringstream& ss, vector<Task>& tasks ) {
 
     while ( ss >> tag ) {
         modtask->removeTag( tag );
+        cout << "Removed tag " << tag << " from task " << modtask->getName() << endl;
     }
 
     return;
