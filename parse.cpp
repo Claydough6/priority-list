@@ -7,10 +7,31 @@
   */
 void getHelp() {
     cout << "pritority-list: quick CLI to-do list utility" << endl;
+    cout << "Usage: > [command] [args...]" << endl;
     cout << endl;
-    cout << "\tDescription..." << endl;
+    cout << "  add [task] [priority] [tags...]" << endl;
+    cout << "    - adds task with given priority and tags to list" << endl;
+    cout << "  remove [task]" << endl;
+    cout << "    - removes task from list if it exists" << endl;
+    cout << "  show [tags...]" << endl;
+    cout << "    - prints out all tasks filtered by 'tag' (leave blank for all tasks)" << endl;
+    cout << "  tag [task] [tags...]" << endl;
+    cout << "    - adds tags to given task" << endl;
+    cout << "  untag [task] [tags...]" << endl;
+    cout << "    - removes tags from given task if they exist" << endl;
+    cout << "  file [filename]" << endl;
+    cout << "    - sets current working file to one specified (used for loading/saving)" << endl;
+    cout << "  load" << endl;
+    cout << "    - reads tasks from set file and populates current tasks" << endl;
+    cout << "  save" << endl;
+    cout << "    - writes current tasks out to set file (overwrites file!)" << endl;
+    cout << "  quit" << endl;
+    cout << "    - exits the application" << endl;
+    cout << "  help" << endl;
+    cout << "    - displays this message" << endl;
     cout << endl;
-    cout << "Usage: priority-list [args] ... " << endl;    
+    cout << "Priority values range from 0 (highest priority) to 9 (least priority)." << endl;
+    cout << "If no value is given, default priority of 9 is chosen." << endl;
 }
 
 /** parseCommand
