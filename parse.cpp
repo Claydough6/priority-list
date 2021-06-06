@@ -21,7 +21,7 @@ void getHelp() {
   *     2 -- other error
   * parses the command and delegates task to other functions
   */
-int parseCommand( const string& cmd, vector<Task>& tasks ) {
+int parseCommand( const string& cmd, vector<Task>& tasks, string& file ) {
     string arg;
     stringstream ss {cmd};
     ss >> arg;
@@ -47,6 +47,12 @@ int parseCommand( const string& cmd, vector<Task>& tasks ) {
     }
     else if ( arg == "untag" || arg == "u" ) {
         removeTags( ss, tasks );
+    }
+    else if ( arg == "file" || arg == "f" ) {
+        ss >> file;
+    }
+    else if ( arg == "save" || arg == "s" ) {
+        save( file, tasks );
     }
 
     return 0;

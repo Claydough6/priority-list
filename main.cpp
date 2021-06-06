@@ -9,6 +9,7 @@
 #include "task.h"
 #include "parse.h"
 
+
 using std::cout;
 using std::cin;
 using std::endl;
@@ -16,8 +17,6 @@ using std::endl;
 using std::string;
 using std::stringstream;
 using std::getline;
-
-
 
 
 /** main
@@ -29,6 +28,8 @@ int main( int argc, char** argv ) {
     if ( argc == 1 )
         arg_mode = false;           // puts the program into command mode
     
+    string filename;                // used to save and read from
+
     // feature not implemented yet
     if ( arg_mode )
         return EXIT_FAILURE;
@@ -40,7 +41,7 @@ int main( int argc, char** argv ) {
     string cmd;
     cout << "> ";
     while ( getline(cin, cmd) ) {
-        int rval = parseCommand( cmd, tasks );     // parse the command
+        int rval = parseCommand( cmd, tasks, filename );     // parse the command
             
         if ( rval == 1 )
             break;

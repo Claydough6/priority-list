@@ -10,6 +10,7 @@
 #include <queue>
 
 #include "task.h"
+#include "fileio.h"
 
 using std::cout;
 using std::endl;
@@ -20,7 +21,7 @@ using std::priority_queue;
 
 void printHelp();
 
-int parseCommand( const string& cmd, vector<Task>& tasks );
+int parseCommand( const string& cmd, vector<Task>& tasks, string& file );
 
 void addTask( stringstream& ss, vector<Task>& tasks );
 
