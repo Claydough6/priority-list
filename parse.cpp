@@ -126,14 +126,14 @@ void showTasks( stringstream& ss, const vector<Task>& tasks ) {
     } while ( ss >> tag );
 
     // print out the priority queue
-    cout << "Tasks: " << endl;
     while ( !(tasklist.empty()) ) {
         Task t = tasklist.top();        // get the element
         
-        cout << "  " << t.getName() << " - " << t.getPriority() << " : ";
+        cout << "(" << t.getPriority() << ") " << t.getName() << endl;
+        cout << "  ";
         for ( const string& tag : t.getTags() ) {
             if ( !hiddenTag(tag) )
-                cout << tag << ", ";
+                cout << tag << " ";
         }
         cout << endl;
 
