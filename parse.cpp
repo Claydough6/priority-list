@@ -54,6 +54,9 @@ int parseCommand( const string& cmd, vector<Task>& tasks, string& file ) {
     else if ( arg == "save" || arg == "s" ) {
         save( file, tasks );
     }
+    else if ( arg == "load" || arg == "l" ) {
+        read( file, tasks );
+    }
 
     return 0;
 }

@@ -26,3 +26,52 @@ int save( const string& file, const vector<Task>& tasks ) {
 
     return 0;
 }
+
+int read( const string& file, vector<Task>& tasks ) {
+    ifstream readfile { file };     // get the file to read from
+    if ( !readfile ) {
+        return 1;                   // couldn't open the file
+    }
+
+    /* read in the tasks to add to the tasklist */
+    string buffer;
+    while ( getline(readfile, buffer, '{') ) {
+        std::cout << '"' << buffer << '"' << endl;
+        // make sure we didn't hit end
+        if ( readfile.eof() ) 
+            break;
+
+        /* get the name and the priority */
+        int priority;
+        string name;
+        stringstream ss { buffer };
+                
+        ss >> buffer >> name >> priority;               // read name, priority
+        Task temp ( name, priority );                   // make new task
+        std::cout << name << " " << priority << endl;
+
+        /* get the rest */
+        while ( readfile >> buffer ) {
+            if ( buffer == "}" ) {
+                break;
+            }
+            std::cout << buffer << endl;
+
+            /* read in the tags */
+            if ( buffer == "Tags" ) {
+                readfile >> buffer >> buffer;   // twice for '{'
+                while ( buffer != "}" ) {
+                    std::cout << "\t" <<  buffer << endl;
+                    temp.addTag( buffer );
+                    readfile >> buffer;
+                }
+            }
+        }
+
+        /* add the newly created task to the list */
+        tasks.push_back( temp );
+        std::cout << "added to list\n" << endl;
+    }
+
+    return 0;
+}
