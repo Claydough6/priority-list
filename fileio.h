@@ -18,6 +18,6 @@ using std::stringstream;
 
 int save( const string& file, const vector<Task>& tasks );
 
-int read( const string& file, vector<Task>& tasks );
+int load( const string& file, vector<Task>& tasks );
 
 #endif
